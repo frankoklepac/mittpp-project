@@ -10,15 +10,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace ProjektniZadatak
 {
-    [TestFixture]
-    public class RegisterTest
+    public class BaseTest
     {
 #pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-        private IWebDriver driver;
+        protected IWebDriver driver;
 #pragma warning restore NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private bool acceptNextAlert = true;
+        protected StringBuilder verificationErrors;
+        protected string baseURL;
+        protected bool acceptNextAlert = true;
 
         [SetUp]
         public void SetupTest()
@@ -39,9 +38,13 @@ namespace ProjektniZadatak
             {
             }
         }
+    }
 
-        [Test]
-        public void TheUntitledTestCaseTest()
+    [TestFixture, Order(1)]
+    public class RegisterTest : BaseTest
+    {
+        [Test, Order(1)]
+        public void Register()
         {
             driver.Navigate().GoToUrl("https://demowebshop.tricentis.com/");
             driver.FindElement(By.LinkText("Register")).Click();
@@ -50,8 +53,9 @@ namespace ProjektniZadatak
             driver.FindElement(By.Id("FirstName")).SendKeys("Franko");
             driver.FindElement(By.Id("LastName")).Clear();
             driver.FindElement(By.Id("LastName")).SendKeys("Klepac");
+            string uniqueEmail = $"fklepac+{Guid.NewGuid()}@etfos.hr";
             driver.FindElement(By.Id("Email")).Clear();
-            driver.FindElement(By.Id("Email")).SendKeys("fklepac@etfos.hr");
+            driver.FindElement(By.Id("Email")).SendKeys(uniqueEmail);
             driver.FindElement(By.Id("Password")).Clear();
             driver.FindElement(By.Id("Password")).SendKeys("test123");
             driver.FindElement(By.Id("ConfirmPassword")).Clear();
@@ -59,6 +63,22 @@ namespace ProjektniZadatak
             driver.FindElement(By.Id("gender-male")).Click();
             driver.FindElement(By.Id("register-button")).Click();
             driver.FindElement(By.XPath("//input[@value='Continue']")).Click();
+        }
+    }
+
+    [TestFixture, Order(2)]
+    public class LoginTest : BaseTest
+    {
+        [Test, Order(2)]
+        public void Login()
+        {
+            driver.Navigate().GoToUrl("https://demowebshop.tricentis.com/");
+            driver.FindElement(By.LinkText("Log in")).Click();
+            driver.FindElement(By.Id("Email")).Clear();
+            driver.FindElement(By.Id("Email")).SendKeys("fklepac@etfos.hr");
+            driver.FindElement(By.Id("Password")).Clear();
+            driver.FindElement(By.Id("Password")).SendKeys("test123");
+            driver.FindElement(By.XPath("//input[@value='Log in']")).Click();
         }
     }
 }
