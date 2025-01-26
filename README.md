@@ -1,7 +1,7 @@
 # mittpp-project
 Repozitorij za projekt iz kolegija Metode i tehnike testiranja programske podrške
 
-Kako bi se projekt mogao pokrenuti na računalu, potrebno je:
+Prije pokretanja projekta, potrebno je:
 1. Imati instaliran Visual Studio 2022 IDE koji je dostupan na: https://visualstudio.microsoft.com/vs/
 2. Za instaliranje potrebnih NuGet paketa, potrebno je prvo kreirati novi projekt:
    * Create a new project -> Pronaći i odabrati 'NUnit 3 Test Project'
@@ -22,3 +22,10 @@ Kako bi se projekt mogao pokrenuti na računalu, potrebno je:
    * Selenium Support 4.27.0
    
    ![potrebniPaketi](https://github.com/user-attachments/assets/1f076079-6ee3-4fca-ade0-bf0100fd13d1)
+
+Nakon što su svi potrebni programi i paketi instalirani na računalu, kako bi se pokrenuo projekt potrebno je:
+
+1. Klonirati ovaj repo na računalo:
+   ```
+   git clone https://github.com/frankoklepac/mittpp-project.git
+   ```
