@@ -13,9 +13,9 @@ namespace ProjektniZadatak
 {
     public class BaseTest
     {
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
+#pragma warning disable NUnit1032 
         protected IWebDriver driver;
-#pragma warning restore NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
+#pragma warning restore NUnit1032 
         protected StringBuilder verificationErrors;
         protected string baseURL;
         protected bool acceptNextAlert = true;
@@ -24,7 +24,6 @@ namespace ProjektniZadatak
         public void SetupTest()
         {
             driver = new ChromeDriver(); 
-            // 
             baseURL = "https://www.google.com/";
             verificationErrors = new StringBuilder();
         }
